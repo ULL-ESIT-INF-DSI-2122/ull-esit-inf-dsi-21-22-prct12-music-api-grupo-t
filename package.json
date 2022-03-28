@@ -1,14 +1,10 @@
 {
-  "name": "pract5",
+  "name": "template",
   "version": "1.0.0",
-  "description": "",
+  "description": "Template para ejercicios de la asignatura DSI",
   "main": "",
   "scripts": {
-    "pokedex": "tsc-watch --onSuccess \"node dist/ejecicio-1/pokedex.js\"",
-    "pokemon": "tsc-watch --onSuccess \"node dist/ejecicio-1/pokemon.js\"",
-    "combat": "tsc-watch --onSuccess \"node dist/ejecicio-1/combat.js\"",
-    "table": "tsc-watch --onSuccess \"node dist/ejercicio-2/table.js\"",
-    "c4": "tsc-watch --onSuccess \"node dist/ejercicio-2/connect4.js\"",
+    "start": "tsc-watch --onSuccess \"node dist/modificacion.js\"",
     "test": "mocha",
     "doc": "typedoc"
   },
