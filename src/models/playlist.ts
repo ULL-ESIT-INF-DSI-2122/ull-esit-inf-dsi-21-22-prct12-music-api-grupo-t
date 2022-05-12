@@ -125,27 +125,27 @@ export class PlayList {
   /**
    * Returns the information of the playlist as a string
    */
-   public asString(): string {
+  public asString(): string {
     let genresString = '';
-    this.genres.forEach(genre => {
+    this.genres.forEach((genre) => {
       genresString += `${genre} `;
     });
-    let duration = `${Math.floor(this.duration.minutes / 60)} h ` + 
+    let duration = `${Math.floor(this.duration.minutes / 60)} h ` +
       `${this.duration.minutes % 60} min ${this.duration.seconds} seg`;
     let numberOfSongs = this.songs.length;
     let formatedPlaylist = `${this.name} - Duration: ${duration}, ` +
       `${numberOfSongs} Songs, Genres: ${genresString}`;
 
-      return formatedPlaylist;
+    return formatedPlaylist;
   }
 
   /**
    * Returns true if a certain song is in the playlist
-   * @param songName 
+   * @param songName
    */
   public isSong(songName: string): boolean {
     let isSong = false;
-    this.songs.forEach(song => {
+    this.songs.forEach((song) => {
       if (song.getName() === songName) {
         isSong = true;
       }

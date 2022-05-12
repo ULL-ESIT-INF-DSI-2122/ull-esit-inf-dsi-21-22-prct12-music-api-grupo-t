@@ -1,5 +1,5 @@
-import {Genre} from './genre'
-import {Artist} from './artist'
+import {Genre} from './genre';
+import {Artist} from './artist';
 
 
 /**
@@ -12,20 +12,20 @@ export type Duration = {
 }
 
 /*
- * Song class that represents all the songs 
+ * Song class that represents all the songs
  */
 export class Song {
   /**
    * Constructor
-   * @param name of the song 
+   * @param name of the song
    * @param author of the song
    * @param duration of the song
    * @param genres of the song
    * @param isSingle boolean that shows if the songs is a single
    * @param views of the song
    */
-  constructor(private name: string, private author: Artist, 
-    private duration: Duration = {minutes: 0, seconds: 0}, private genres: Genre[] = [], 
+  constructor(private name: string, private author: Artist,
+    private duration: Duration = {minutes: 0, seconds: 0}, private genres: Genre[] = [],
     private isSingle: boolean = true, private views: number = 0) {}
 
   /**
@@ -135,7 +135,7 @@ export class Song {
    */
   public asString(): string {
     let genresString = '';
-    this.genres.forEach(genre => {
+    this.genres.forEach((genre) => {
       genresString += `${genre} `;
     });
     let formatedSong = `${this.name} - Author: ${this.author}, Duration: ${this.duration.minutes}:${this.duration.seconds}, ` +
