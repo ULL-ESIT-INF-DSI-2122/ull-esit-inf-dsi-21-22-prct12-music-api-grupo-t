@@ -1,3 +1,8 @@
-# Template de Prácticas
-## Ejercicios
-Todos los ejercicios se encuentran bajo el directorio `./src` del proyecto, cada uno en su carpeta correspondiente `ejercicio-n`. Las pruebas creadas para cada uno de los ejercicios se encuentran bajo `./test`, siguiendo la metodología de desarrollo TDD.
+# Práctica 12 - API Node/Express de gestión de información musical
+## Objetivo
+Se propone la implementación de un API REST, haciendo uso de Node/Express, que permita llevar a cabo operaciones de creación, lectura, modificación y borrado (Create, Read, Update, Delete - CRUD) de canciones, artistas y playlists.
+
+## Integrantes del equipo
+* Tanausú Falcón Casanova
+* Juan Marrero Domínguez
+* Diego Rodríguez Pérez
