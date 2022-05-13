@@ -4,7 +4,7 @@ interface ArtistDocumentInterface extends Document {
   name: string,
   genre: string[],
   songs: string[],
-  listeners: number
+  monthlyListeners: number
 }
 
 const ArtistSchema = new Schema<ArtistDocumentInterface>({
@@ -22,23 +22,10 @@ const ArtistSchema = new Schema<ArtistDocumentInterface>({
     type: String,
     trim: true,
   },
-  listeners: {
+  monthlyListeners: {
     type: Number,
     default: 0,
   },
 });
 
 export const Artist = model<ArtistDocumentInterface>('Artist', ArtistSchema);
-
-const artist = new Artist({
-  name: 'Skrillex',
-  genre: 'Pop',
-  listeners: 5,
-});
-
-
-artist.save().then((result) => {
-  console.log(result);
-}).catch((error) => {
-  console.log(error);
-});
