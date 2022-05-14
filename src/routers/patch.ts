@@ -5,7 +5,7 @@ import {Artist} from '../models/artist';
 export const patchRouter = express.Router();
 
 // Recibe peticiones para actualizar un artista según su nombre
-patchRouter.patch('/artists', (req, res) => {
+patchRouter.patch('/artist', (req, res) => {
   if (!req.query.name) {
     res.status(400).send({
       error: 'A name must be provided',
@@ -39,7 +39,7 @@ patchRouter.patch('/artists', (req, res) => {
 
 
 // Recibe peticiones para actualizar un artista según su id
-patchRouter.patch('/artists/:id', (req, res) => {
+patchRouter.patch('/artist/:id', (req, res) => {
   const allowedUpdates = ['name', 'genre', 'songs', 'monthlyListeners'];
   const actualUpdates = Object.keys(req.body);
   const isValidUpdate =

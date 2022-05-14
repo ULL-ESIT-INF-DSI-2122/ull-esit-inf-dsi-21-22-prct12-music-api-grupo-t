@@ -1,9 +1,11 @@
 import {Document, Schema, model} from 'mongoose';
+import {SongDocumentInterface} from './song';
+import {Genre} from './genre';
 
-interface ArtistDocumentInterface extends Document {
+export interface ArtistDocumentInterface extends Document {
   name: string,
-  genre: string[],
-  songs: string[],
+  genres: Genre[],
+  songs: SongDocumentInterface[],
   monthlyListeners: number
 }
 
@@ -13,15 +15,21 @@ const ArtistSchema = new Schema<ArtistDocumentInterface>({
     required: true,
     trim: true,
   },
-  genre: {
-    type: String,
-    trim: true,
-    enum: ['Pop', 'Rock', 'Trap', 'Rap', 'Heavy'],
-  },
-  songs: {
-    type: String,
-    trim: true,
-  },
+  genres: [
+    {
+      type: String,
+      trim: true,
+      enum: [
+        "Rap", "Pop", "Trap", "Electro", "Classic", "Reggaeton",
+        "Rock", "Country", "Popular", "Blues", undefined,
+      ],
+    },
+  ],
+  songs: [
+    {
+      type: Schema.Types.ObjectId, ref: 'Song',
+    },
+  ],
   monthlyListeners: {
     type: Number,
     default: 0,
