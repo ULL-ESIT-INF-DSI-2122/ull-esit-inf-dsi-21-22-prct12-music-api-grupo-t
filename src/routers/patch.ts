@@ -72,8 +72,7 @@ patchRouter.patch('/song', (req, res) => {
       error: 'A name must be provided',
     });
   } else {
-    const allowedUpdates = ['name', 'author', 'duration', 'genre',
-      'single', 'reproductions'];
+    const allowedUpdates = ['name', 'duration', 'genre', 'single', 'reproductions'];
     const actualUpdates = Object.keys(req.body);
     const isValidUpdate =
       actualUpdates.every((update) => allowedUpdates.includes(update));
@@ -101,8 +100,7 @@ patchRouter.patch('/song', (req, res) => {
 
 // Modificar canciones según su id
 patchRouter.patch('/song/:id', (req, res) => {
-  const allowedUpdates = ['name', 'author', 'duration', 'genre',
-    'single', 'reproductions'];
+  const allowedUpdates = ['name', 'duration', 'genre', 'single', 'reproductions'];
   const actualUpdates = Object.keys(req.body);
   const isValidUpdate =
       actualUpdates.every((update) => allowedUpdates.includes(update));
