@@ -1,4 +1,5 @@
 import * as express from 'express';
+import {Playlist} from '../models/playlist';
 import {Artist} from '../models/artist';
 import {Song} from '../models/song';
 
@@ -61,6 +62,26 @@ deleteRouter.delete('/song', (req, res) => {
 });
 
 
+// Recibe peticiones de eliminación de playlists por su nombre
+deleteRouter.delete('/playlist', (req, res) => {
+  if (!req.query.name) {
+    res.status(400).send({
+      error: 'A name must be provided',
+    });
+  } else {
+    Playlist.findOneAndDelete({name: req.query.name.toString()}).then((playlist) => {
+      if (!playlist) {
+        res.status(404).send();
+      } else {
+        res.send(playlist);
+      }
+    }).catch(() => {
+      res.status(400).send();
+    });
+  }
+});
+
+
 // Recibe peticiones de eliminación de artistas por su id
 deleteRouter.delete('/artist/:id', (req, res) => {
   Artist.findByIdAndDelete(req.params.id).then((artist) => {
@@ -98,6 +119,20 @@ deleteRouter.delete('/song/:id', (req, res) => {
       }).catch((error) => {
         res.status(400).send(error);
       });
+    }
+  }).catch(() => {
+    res.status(400).send();
+  });
+});
+
+
+// Recibe peticiones de eliminación de playlists por su id
+deleteRouter.delete('/playlist/:id', (req, res) => {
+  Playlist.findByIdAndDelete(req.params.id).then((playlist) => {
+    if (!playlist) {
+      res.status(404).send();
+    } else {
+      res.send(playlist);
     }
   }).catch(() => {
     res.status(400).send();
