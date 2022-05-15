@@ -1,7 +1,6 @@
 import * as express from 'express';
 import {Artist} from '../models/artist';
 
-
 export const patchRouter = express.Router();
 
 // Recibe peticiones para actualizar un artista según su nombre
