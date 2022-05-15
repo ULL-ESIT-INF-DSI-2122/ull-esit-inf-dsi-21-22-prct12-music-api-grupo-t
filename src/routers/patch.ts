@@ -1,5 +1,6 @@
 import * as express from 'express';
 import {Artist} from '../models/artist';
+import {Song} from '../models/song';
 
 export const patchRouter = express.Router();
 
@@ -64,9 +65,46 @@ patchRouter.patch('/artist/:id', (req, res) => {
   }
 });
 
-// Recibe peticiones para actualizar un artista según su id
-patchRouter.patch('/artist/:name', (req, res) => {
-  const allowedUpdates = ['name', 'genre', 'songs', 'monthlyListeners'];
+// Updates song
+patchRouter.patch('/song', (req, res) => {
+  if (!req.query.name) {
+    res.status(400).send({
+      error: 'A name must be provided',
+    });
+  } else {
+    const allowedUpdates = ['name', 'author', 'duration', 'genre',
+      'single', 'reproductions'];
+    // const allowedUpdates = ['name'];
+    const actualUpdates = Object.keys(req.body);
+    const isValidUpdate =
+      actualUpdates.every((update) => allowedUpdates.includes(update));
+
+    if (!isValidUpdate) {
+      res.status(400).send({
+        error: 'Update is not permitted',
+      });
+    } else {
+      Song.findByIdAndUpdate({name: req.query.name.toString()}, req.body, {
+        new: true,
+        runValidators: true,
+      }).then((song) => {
+        if (!song) {
+          res.status(404).send();
+        } else {
+          res.send(song);
+        }
+      }).catch((error) => {
+        res.status(400).send(error);
+      });
+    }
+  }
+});
+
+// Modificar canciones según su id
+patchRouter.patch('/song/:id', (req, res) => {
+  const allowedUpdates = ['name', 'author', 'duration', 'genre',
+    'single', 'reproductions'];
+  // const allowedUpdates = ['name'];
   const actualUpdates = Object.keys(req.body);
   const isValidUpdate =
       actualUpdates.every((update) => allowedUpdates.includes(update));
@@ -76,14 +114,14 @@ patchRouter.patch('/artist/:name', (req, res) => {
       error: 'Update is not permitted',
     });
   } else {
-    Artist.findByIdAndUpdate(req.params.name, req.body, {
+    Song.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
-    }).then((artist) => {
-      if (!artist) {
+    }).then((song) => {
+      if (!song) {
         res.status(404).send();
       } else {
-        res.send(artist);
+        res.send(song);
       }
     }).catch((error) => {
       res.status(400).send(error);
