@@ -17,7 +17,14 @@ deleteRouter.delete('/artist', (req, res) => {
       if (!artist) {
         res.status(404).send();
       } else {
-        res.send(artist);
+        Song.deleteMany({_id: {$in: artist.songs}}).then((result) => {
+          res.send({
+            artist,
+            deletedSongs: result.deletedCount,
+          });
+        }).catch(() => {
+          res.status(500).send();
+        });
       }
     }).catch(() => {
       res.status(400).send();
@@ -88,7 +95,14 @@ deleteRouter.delete('/artist/:id', (req, res) => {
     if (!artist) {
       res.status(404).send();
     } else {
-      res.send(artist);
+      Song.deleteMany({_id: {$in: artist.songs}}).then((result) => {
+        res.send({
+          artist,
+          deletedSongs: result.deletedCount,
+        });
+      }).catch(() => {
+        res.status(500).send();
+      });
     }
   }).catch(() => {
     res.status(400).send();
