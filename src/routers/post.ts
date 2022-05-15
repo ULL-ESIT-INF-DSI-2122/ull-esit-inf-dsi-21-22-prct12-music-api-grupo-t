@@ -1,4 +1,5 @@
 import * as express from 'express';
+import {Playlist} from '../models/playlist';
 import {Artist} from '../models/artist';
 import {Song} from '../models/song';
 
@@ -50,7 +51,59 @@ postRouter.post('/song', (req, res) => {
         res.status(500).send(error);
       });
     }
-  }).catch(() => {
-    res.status(500).send();
+  }).catch((error) => {
+    res.status(500).send(error);
   });
+});
+
+
+// Recibe peticiones para crear playlists
+postRouter.post('/playlist', (req, res) => {
+  if (!req.body.name || !req.body.songs) {
+    res.status(400).send({
+      error: 'Name and songs must be provided for the playlist',
+    });
+  } else if (Array.isArray(req.body.songs) &&
+      req.body.songs.every((song: unknown) => typeof song === 'string')) {
+    const newPlaylist = new Playlist({
+      name: req.body.name,
+      genres: req.body.genres,
+    });
+
+    let fullSec = 0;
+    const songs: string[] = req.body.songs;
+    let ignored = false;
+
+    songs.forEach((song) => {
+      Song.findOne({name: song}).then((foundSong) => {
+        if (foundSong) {
+          newPlaylist.songs.push(foundSong);
+          fullSec += foundSong.duration.sec + foundSong.duration.min * 60;
+        } else {
+          ignored = true;
+        }
+        if (song === songs[songs.length - 1]) {
+          newPlaylist.duration = {min: Math.floor(fullSec / 60), sec: fullSec % 60};
+          newPlaylist.save().then((playlist) => {
+            if (!ignored) {
+              res.status(201).send(playlist);
+            } else {
+              res.status(201).send({
+                warning: "Some songs were not found",
+                playlist,
+              });
+            }
+          }).catch((error) => {
+            res.status(500).send(error);
+          });
+        }
+      }).catch((error) => {
+        res.status(500).send(error);
+      });
+    });
+  } else {
+    res.status(400).send({
+      error: 'Songs must be provided as names',
+    });
+  }
 });
