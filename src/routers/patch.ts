@@ -74,7 +74,6 @@ patchRouter.patch('/song', (req, res) => {
   } else {
     const allowedUpdates = ['name', 'author', 'duration', 'genre',
       'single', 'reproductions'];
-    // const allowedUpdates = ['name'];
     const actualUpdates = Object.keys(req.body);
     const isValidUpdate =
       actualUpdates.every((update) => allowedUpdates.includes(update));
@@ -84,7 +83,7 @@ patchRouter.patch('/song', (req, res) => {
         error: 'Update is not permitted',
       });
     } else {
-      Song.findByIdAndUpdate({name: req.query.name.toString()}, req.body, {
+      Song.findOneAndUpdate({name: req.query.name.toString()}, req.body, {
         new: true,
         runValidators: true,
       }).then((song) => {
@@ -104,7 +103,6 @@ patchRouter.patch('/song', (req, res) => {
 patchRouter.patch('/song/:id', (req, res) => {
   const allowedUpdates = ['name', 'author', 'duration', 'genre',
     'single', 'reproductions'];
-  // const allowedUpdates = ['name'];
   const actualUpdates = Object.keys(req.body);
   const isValidUpdate =
       actualUpdates.every((update) => allowedUpdates.includes(update));
