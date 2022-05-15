@@ -63,3 +63,30 @@ patchRouter.patch('/artist/:id', (req, res) => {
     });
   }
 });
+
+// Recibe peticiones para actualizar un artista según su id
+patchRouter.patch('/artist/:name', (req, res) => {
+  const allowedUpdates = ['name', 'genre', 'songs', 'monthlyListeners'];
+  const actualUpdates = Object.keys(req.body);
+  const isValidUpdate =
+      actualUpdates.every((update) => allowedUpdates.includes(update));
+
+  if (!isValidUpdate) {
+    res.status(400).send({
+      error: 'Update is not permitted',
+    });
+  } else {
+    Artist.findByIdAndUpdate(req.params.name, req.body, {
+      new: true,
+      runValidators: true,
+    }).then((artist) => {
+      if (!artist) {
+        res.status(404).send();
+      } else {
+        res.send(artist);
+      }
+    }).catch((error) => {
+      res.status(400).send(error);
+    });
+  }
+});
