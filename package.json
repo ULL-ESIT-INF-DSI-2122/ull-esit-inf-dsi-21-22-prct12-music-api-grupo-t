@@ -1,12 +1,19 @@
 {
-  "name": "notes-app",
+  "name": "music-app",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
+<<<<<<< HEAD
     "test": "mocha",
+=======
+    "heroku-postbuild": "tsc",
+>>>>>>> 1bfaa14c1d20bbb9bbb48a513480b43565c1f4fc
     "start": "node dist/index.js",
     "dev": "tsc-watch --onSuccess \"node dist/index.js\""
+  },
+  "engines": {
+    "node": "16.x"
   },
   "keywords": [],
   "author": "",
