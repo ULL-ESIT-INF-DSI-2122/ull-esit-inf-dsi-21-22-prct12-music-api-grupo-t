@@ -23,37 +23,43 @@ postRouter.post('/artist', (req, res) => {
 
 // Recibe peticiones para crear canciones
 postRouter.post('/song', (req, res) => {
-  Artist.findOne({name: req.body.author.toString()}).then((artist) => {
-    if (!artist) {
-      res.status(404).send({
-        error: 'Artist not found',
-      });
-    } else {
-      const song = new Song({
-        name: req.body.name,
-        author: artist,
-        duration: req.body.duration,
-        genres: req.body.genres,
-        single: req.body.single,
-        reproductions: req.body.reproductions,
-      });
-      // Se almacenan los datos de la canción
-      song.save().then((song) => {
-        artist.songs.push(song._id);
-        artist.monthlyListeners += song.reproductions;
+  if (!req.body.author) {
+    res.status(400).send({
+      error: 'An author for the song must be provided',
+    });
+  } else {
+    Artist.findOne({name: req.body.author.toString()}).then((artist) => {
+      if (!artist) {
+        res.status(404).send({
+          error: 'Artist not found',
+        });
+      } else {
+        const song = new Song({
+          name: req.body.name,
+          author: artist,
+          duration: req.body.duration,
+          genres: req.body.genres,
+          single: req.body.single,
+          reproductions: req.body.reproductions,
+        });
+        // Se almacenan los datos de la canción
+        song.save().then((song) => {
+          artist.songs.push(song._id);
+          artist.monthlyListeners += song.reproductions;
 
-        artist.save().then(() => {
-          res.status(201).send(song);
+          artist.save().then(() => {
+            res.status(201).send(song);
+          }).catch((error) => {
+            res.status(500).send(error);
+          });
         }).catch((error) => {
           res.status(500).send(error);
         });
-      }).catch((error) => {
-        res.status(500).send(error);
-      });
-    }
-  }).catch((error) => {
-    res.status(500).send(error);
-  });
+      }
+    }).catch((error) => {
+      res.status(500).send(error);
+    });
+  }
 });
 
 
