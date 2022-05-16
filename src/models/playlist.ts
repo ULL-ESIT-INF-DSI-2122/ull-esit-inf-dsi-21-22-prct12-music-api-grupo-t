@@ -27,7 +27,7 @@ const PlaylistSchema = new Schema<PlaylistDocumentInterface>({
   ],
   songs: [
     {
-      type: Schema.Types.ObjectId, ref: 'Song',
+      type: Schema.Types.Mixed, ref: 'Song',
     },
   ],
   duration: {
