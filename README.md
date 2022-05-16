@@ -312,6 +312,8 @@ En este router se desarrolla el código para crear los siguientes elementos:
 * **Canciones**: Hay que indicar el nombre, el autor, la duración, los géneros, si es single y las reproducciones.
 * **PlayLists**: Hay que indicar el nombre, las canciones y los géneros.
 
+#### Pruebas
+![Prueba1](/docs/assets/Screenshot_27.png)
 ### Router Get
 #### Código
 ```ts
@@ -419,6 +421,9 @@ En este router se desarrolla el código para obtener la información de los sigu
 * **Artistas**: Se obtiene la información indicando el nombre o el id. Para el nombre `/artist?name="..."`. Para el id `/artist?id="..."`.
 * **Canciones**: Se obtiene la información indicando el nombre o el id. Para el nombre `/song?name="..."`. Para el id `/song?id="..."`.
 * **PlayLists**: Se obtiene la información indicando el nombre o el id. Para el nombre `/playlist?name="..."`. Para el id `/playlist?id="..."`.
+
+#### Pruebas
+![Prueba2](/docs/assets/Screenshot_29.png)
 
 ### Router Delete
 #### Código
@@ -585,6 +590,9 @@ En este router se desarrolla el código para eliminar los siguientes elementos:
 * **Artistas**: Se elimina el artista indicando el nombre o el id. Para el nombre `/artist?name="..."`. Para el id `/artist?id="..."`.
 * **Canciones**: Se elimina la canción indicando el nombre o el id. Para el nombre `/song?name="..."`. Para el id `/song?id="..."`.
 * **PlayLists**: Se elimina la playlist indicando el nombre o el id. Para el nombre `/playlist?name="..."`. Para el id `/playlist?id="..."`.
+
+#### Pruebas
+![Prueba3](/docs/assets/Screenshot_28.png)
 
 ### Router Patch
 #### Código
@@ -784,3 +792,6 @@ En este router se desarrolla el código para modificar información de los sigui
 * **Artistas**: Se modifica el artista indicando el nombre o el id. Para el nombre `/artist?name="..."`. Para el id `/artist?id="..."`. Se incluye en el *JSON* de la petición la información del artista que se va a modificar.
 * **Canciones**: Se modifica la canción indicando el nombre o el id. Para el nombre `/song?name="..."`. Para el id `/song?id="..."` Se incluye en el *JSON* de la petición la información de la canción que se va a modificar.
 * **PlayLists**: Se elimina la playlist indicando el nombre o el id. Para el nombre `/playlist?name="..."`. Para el id `/playlist?id="..."` Se incluye en el *JSON* de la petición la información de la playlist que se va a modificar.
+
+#### Pruebas
+![Prueba4](/docs/assets/Screenshot_30.png)
