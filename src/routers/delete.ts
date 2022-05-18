@@ -61,25 +61,6 @@ deleteRouter.delete('/song', (req, res) => {
         }).catch((error) => {
           res.status(500).send(error);
         });
-        Playlist.find().then((playlists) => {
-          if (!playlists) {
-            res.status(404).send();
-          } else {
-            playlists.forEach((playlist) => {
-              if (playlist.songs.indexOf(song._id) !== -1) {
-                const index = playlist.songs.indexOf(song._id);
-                playlist.songs.splice(1, index);
-                playlist.save().then(() => {
-                  res.send(song);
-                }).catch((error) => {
-                  res.status(500).send(error);
-                });
-              }
-            });
-          }
-        }).catch((error) => {
-          res.status(500).send(error);
-        });
       }
     }).catch(() => {
       res.status(400).send();
