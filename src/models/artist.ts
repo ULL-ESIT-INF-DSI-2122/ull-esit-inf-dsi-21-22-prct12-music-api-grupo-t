@@ -13,6 +13,7 @@ const ArtistSchema = new Schema<ArtistDocumentInterface>({
   name: {
     type: String,
     required: true,
+    unique: true,
     trim: true,
   },
   genres: [
