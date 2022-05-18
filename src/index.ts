@@ -6,7 +6,6 @@ import {patchRouter} from './routers/patch';
 import {deleteRouter} from './routers/delete';
 import {defaultRouter} from './routers/default';
 
-
 const app = express();
 app.use(express.json());
 app.use(postRouter);

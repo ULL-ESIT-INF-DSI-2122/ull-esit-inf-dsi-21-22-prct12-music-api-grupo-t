@@ -1,6 +1,16 @@
 {
   "entryPoints": [
-    "./src/modificacion.ts"
+    "./src/db/mongoose.ts",
+    "./src/models/artist.ts",
+    "./src/models/song.ts",
+    "./src/models/playlist.ts",
+    "./src/models/genre.ts",
+    "./src/routers/default.ts",
+    "./src/routers/delete.ts",
+    "./src/routers/get.ts",
+    "./src/routers/patch.ts",
+    "./src/routers/post.ts",
+    "./src/index.ts"
   ],
   "out": "./docs"
 }

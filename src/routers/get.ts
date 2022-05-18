@@ -3,10 +3,14 @@ import {Artist} from '../models/artist';
 import {Song} from '../models/song';
 import {Playlist} from '../models/playlist';
 
-
+/**
+ * Contains all the functionability related to get items information
+ */
 export const getRouter = express.Router();
 
-// Recibe peticiones para obtener artistas por sus nombres
+/**
+ * Gets all the info from an artist by its name
+ */
 getRouter.get('/artist', (req, res) => {
   const filter = req.query.name?{name: req.query.name.toString()}:{};
 
@@ -22,7 +26,9 @@ getRouter.get('/artist', (req, res) => {
 });
 
 
-// Recibe peticiones para obtener canciones por sus nombres
+/**
+ * Gets all the info from an song by its name
+ */
 getRouter.get('/song', (req, res) => {
   const filter = req.query.name?{name: req.query.name.toString()}:{};
 
@@ -38,7 +44,9 @@ getRouter.get('/song', (req, res) => {
 });
 
 
-// Recibe peticiones para obtener playlists por sus nombres
+/**
+ * Gets all the info from a playlist by its name
+ */
 getRouter.get('/playlist', (req, res) => {
   const filter = req.query.name?{name: req.query.name.toString()}:{};
 
@@ -54,7 +62,9 @@ getRouter.get('/playlist', (req, res) => {
 });
 
 
-// Recibe peticiones para obtener un artista según su id
+/**
+ * Gets all the info from an artist by its id
+ */
 getRouter.get('/artist/:id', (req, res) => {
   Artist.findById(req.params.id).then((artist) => {
     if (!artist) {
@@ -68,7 +78,9 @@ getRouter.get('/artist/:id', (req, res) => {
 });
 
 
-// Recibe peticiones para obtener una cancion según su id
+/**
+ * Gets all the info from a song by its id
+ */
 getRouter.get('/song/:id', (req, res) => {
   Song.findById(req.params.id).then((song) => {
     if (!song) {
@@ -82,7 +94,9 @@ getRouter.get('/song/:id', (req, res) => {
 });
 
 
-// Recibe peticiones para obtener una cancion según su id
+/**
+ * Gets all the info from a playlist by its id
+ */
 getRouter.get('/playlist/:id', (req, res) => {
   Playlist.findById(req.params.id).then((playlist) => {
     if (!playlist) {

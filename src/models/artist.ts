@@ -2,6 +2,9 @@ import {Document, Schema, model} from 'mongoose';
 import {SongDocumentInterface} from './song';
 import {Genre} from './genre';
 
+/**
+ * This interface is where the Artist schema is based
+ */
 export interface ArtistDocumentInterface extends Document {
   name: string,
   genres: Genre[],
@@ -36,4 +39,7 @@ const ArtistSchema = new Schema<ArtistDocumentInterface>({
   },
 });
 
+/**
+ * The final model for the Artist database
+ */
 export const Artist = model<ArtistDocumentInterface>('Artist', ArtistSchema);
