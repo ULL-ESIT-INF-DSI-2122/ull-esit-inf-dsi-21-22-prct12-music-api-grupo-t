@@ -2,6 +2,9 @@ import {Document, Schema, model} from 'mongoose';
 import {SongDocumentInterface} from './song';
 import {Genre} from './genre';
 
+/**
+ * This interface is where the Playlist schema is based
+ */
 interface PlaylistDocumentInterface extends Document {
   name: string,
   genres: Genre[],
@@ -36,4 +39,7 @@ const PlaylistSchema = new Schema<PlaylistDocumentInterface>({
   },
 });
 
+/**
+ * The final model for the Playlist database
+ */
 export const Playlist = model<PlaylistDocumentInterface>('Playlist', PlaylistSchema);

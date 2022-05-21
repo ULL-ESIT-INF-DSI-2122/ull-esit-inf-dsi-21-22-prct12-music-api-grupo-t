@@ -3,10 +3,14 @@ import {Playlist} from '../models/playlist';
 import {Artist} from '../models/artist';
 import {Song} from '../models/song';
 
-
+/**
+ * Contains all the functionability related to removing items
+ */
 export const deleteRouter = express.Router();
 
-// Recibe peticiones de eliminación de artistas por su nombre
+/**
+ * Deletes an artist by his name
+ */
 deleteRouter.delete('/artist', (req, res) => {
   if (!req.query.name) {
     res.status(400).send({
@@ -33,7 +37,9 @@ deleteRouter.delete('/artist', (req, res) => {
 });
 
 
-// Recibe peticiones de eliminación de canciones por su nombre
+/**
+ * Deletes asong by its name
+ */
 deleteRouter.delete('/song', (req, res) => {
   if (!req.query.name) {
     res.status(400).send({
@@ -69,7 +75,9 @@ deleteRouter.delete('/song', (req, res) => {
 });
 
 
-// Recibe peticiones de eliminación de playlists por su nombre
+/**
+ * Deletes a playlist by its name
+ */
 deleteRouter.delete('/playlist', (req, res) => {
   if (!req.query.name) {
     res.status(400).send({
@@ -89,7 +97,9 @@ deleteRouter.delete('/playlist', (req, res) => {
 });
 
 
-// Recibe peticiones de eliminación de artistas por su id
+/**
+ * Deletes an artist by his id
+ */
 deleteRouter.delete('/artist/:id', (req, res) => {
   Artist.findByIdAndDelete(req.params.id).then((artist) => {
     if (!artist) {
@@ -110,7 +120,9 @@ deleteRouter.delete('/artist/:id', (req, res) => {
 });
 
 
-// Recibe peticiones de eliminación de canciones por su id
+/**
+ * Deletes a song by its id
+ */
 deleteRouter.delete('/song/:id', (req, res) => {
   Song.findByIdAndDelete(req.params.id).then((song) => {
     if (!song) {
@@ -140,7 +152,9 @@ deleteRouter.delete('/song/:id', (req, res) => {
 });
 
 
-// Recibe peticiones de eliminación de playlists por su id
+/**
+ * Deletes a playlist by its id
+ */
 deleteRouter.delete('/playlist/:id', (req, res) => {
   Playlist.findByIdAndDelete(req.params.id).then((playlist) => {
     if (!playlist) {

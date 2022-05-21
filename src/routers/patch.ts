@@ -3,9 +3,14 @@ import {Artist} from '../models/artist';
 import {Song} from '../models/song';
 import {Playlist} from '../models/playlist';
 
+/**
+ * Contains all the functionability related to modify items information
+ */
 export const patchRouter = express.Router();
 
-// Recibe peticiones para actualizar un artista según su nombre
+/**
+ * Modifies all the artist information, found by its name
+ */
 patchRouter.patch('/artist', (req, res) => {
   if (!req.query.name) {
     res.status(400).send({
@@ -39,7 +44,9 @@ patchRouter.patch('/artist', (req, res) => {
 });
 
 
-// Recibe peticiones para actualizar un artista según su id
+/**
+ * Modifies all the artist information, found by its id
+ */
 patchRouter.patch('/artist/:id', (req, res) => {
   const allowedUpdates = ['name', 'genre', 'songs', 'monthlyListeners'];
   const actualUpdates = Object.keys(req.body);
@@ -66,7 +73,9 @@ patchRouter.patch('/artist/:id', (req, res) => {
   }
 });
 
-// Updates song
+/**
+ * Modifies all the song information, found by its name
+ */
 patchRouter.patch('/song', (req, res) => {
   if (!req.query.name) {
     res.status(400).send({
@@ -99,7 +108,9 @@ patchRouter.patch('/song', (req, res) => {
   }
 });
 
-// Modificar canciones según su id
+/**
+ * Modifies all the song information, found by its id
+ */
 patchRouter.patch('/song/:id', (req, res) => {
   const allowedUpdates = ['name', 'duration', 'genre', 'single', 'reproductions'];
   const actualUpdates = Object.keys(req.body);
@@ -126,7 +137,9 @@ patchRouter.patch('/song/:id', (req, res) => {
   }
 });
 
-// Updates playlist
+/**
+ * Modifies all the playlist information, found by its name
+ */
 patchRouter.patch('/playlist', (req, res) => {
   if (!req.query.name) {
     res.status(400).send({
@@ -159,7 +172,9 @@ patchRouter.patch('/playlist', (req, res) => {
   }
 });
 
-// Modificar playlist según su id
+/**
+ * Modifies all the playlist information, found by its id
+ */
 patchRouter.patch('/playlist/:id', (req, res) => {
   const allowedUpdates = ['name', 'songs', 'genres'];
   const actualUpdates = Object.keys(req.body);

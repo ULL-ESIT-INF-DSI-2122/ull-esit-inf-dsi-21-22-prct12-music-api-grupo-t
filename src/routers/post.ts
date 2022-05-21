@@ -3,16 +3,19 @@ import {Playlist} from '../models/playlist';
 import {Artist} from '../models/artist';
 import {Song} from '../models/song';
 
-
+/**
+ * Contains all the functionality to store items in the database
+ */
 export const postRouter = express.Router();
 
-// Recibe peticiones para crear artistas
+/**
+ * Stores an artist with all its data in the database
+ */
 postRouter.post('/artist', (req, res) => {
   const artist = new Artist({
     name: req.body.name,
     genres: req.body.genres,
   });
-  // Se almacenan los datos del artista
   artist.save().then((artist) => {
     res.status(201).send(artist);
   }).catch((error) => {
@@ -21,7 +24,9 @@ postRouter.post('/artist', (req, res) => {
 });
 
 
-// Recibe peticiones para crear canciones
+/**
+ * Stores a song with all its data in the database
+ */
 postRouter.post('/song', (req, res) => {
   if (!req.body.author) {
     res.status(400).send({
@@ -63,7 +68,9 @@ postRouter.post('/song', (req, res) => {
 });
 
 
-// Recibe peticiones para crear playlists
+/**
+ * Stores a playlist with all its data in the database
+ */
 postRouter.post('/playlist', (req, res) => {
   if (!req.body.name || !req.body.songs) {
     res.status(400).send({
