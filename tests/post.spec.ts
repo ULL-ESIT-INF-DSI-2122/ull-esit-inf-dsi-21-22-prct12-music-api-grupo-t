@@ -14,7 +14,6 @@ describe('Peticiones POST: ', () => {
       genres: [
         'Pop',
       ],
-      monthlyListeners: 5,
     }).end((err, res) => {
       if (err) {
         throw new Error('ERROR al insertar el artista');
@@ -49,7 +48,7 @@ describe('Peticiones POST: ', () => {
       if (err) {
         throw new Error('ERROR al insertar la playlist');
       }
-      expect(res).to.have.status(501);
+      expect(res).to.have.status(201);
       done();
     });
   });

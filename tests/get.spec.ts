@@ -4,6 +4,7 @@ import {expect} from 'chai';
 import 'chai-http';
 
 
+require('./post.spec.ts');
 chai.use(require('chai-http'));
 const url= 'http://localhost:3000';
 
