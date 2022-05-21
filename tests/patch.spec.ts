@@ -5,7 +5,7 @@ import 'chai-http';
 
 require('./post.spec.ts');
 chai.use(require('chai-http'));
-const url= 'http://localhost:3000';
+const url= 'https://grupot-music-app.herokuapp.com';
 
 describe('Petición PATCH', () => {
   it('Debe modificar un artista', (done) => {
@@ -42,7 +42,7 @@ describe('Petición PATCH', () => {
       if (err) {
         throw new Error('ERROR al modificar la canción');
       }
-      expect(res).to.have.status(501);
+      expect(res).to.have.status(400);
       chai.request(url).patch('/song?name=Song1').send({
         name: 'Song2',
         author: "Artist1",
@@ -64,7 +64,7 @@ describe('Petición PATCH', () => {
       if (err) {
         throw new Error('ERROR al modificar la playlist');
       }
-      expect(res).to.have.status(501);
+      expect(res).to.have.status(400);
       chai.request(url).patch('/playlist?name=PlayList1').send({
         name: 'PlayList2',
         songs: [

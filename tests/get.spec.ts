@@ -6,7 +6,7 @@ import 'chai-http';
 
 require('./post.spec.ts');
 chai.use(require('chai-http'));
-const url= 'http://localhost:3000';
+const url= 'https://grupot-music-app.herokuapp.com';
 
 describe('Peticiones GET', () => {
   it('Debe obtener todas los artistas', (done) => {
@@ -59,7 +59,7 @@ describe('Peticiones GET', () => {
       if (err) {
         throw new Error('ERROR al obtener la playlist');
       }
-      expect(res).to.have.status(404);
+      expect(res).to.have.status(200);
       done();
     });
   });

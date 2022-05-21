@@ -5,12 +5,12 @@ import 'chai-http';
 
 
 chai.use(require('chai-http'));
-const url= 'http://localhost:3000';
+const url= 'https://grupot-music-app.herokuapp.com';
 
 describe('Peticiones POST: ', () => {
   it('Se debe poder insertar un Artista', (done) => {
     chai.request(url).post('/artist').send({
-      name: 'Artist1',
+      name: 'Artist3',
       genres: [
         'Pop',
       ],

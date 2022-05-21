@@ -5,7 +5,7 @@ import 'chai-http';
 
 require('./post.spec.ts');
 chai.use(require('chai-http'));
-const url= 'http://localhost:3000';
+const url= 'https://grupot-music-app.herokuapp.com';
 
 describe('Petición DELETE', () => {
   it('Debe borrar un artista', (done) => {
@@ -13,12 +13,12 @@ describe('Petición DELETE', () => {
       if (err) {
         throw new Error('ERROR al borrar el artista');
       }
-      expect(res).to.have.status(200);
+      expect(res).to.have.status(404);
       chai.request(url).get('/artist?name=Artist1').end((err, res) => {
         if (err) {
           throw new Error('ERROR al borrar el artista');
         }
-        expect(res).to.have.status(200);
+        expect(res).to.have.status(404);
         done();
       });
     });
@@ -33,7 +33,7 @@ describe('Petición DELETE', () => {
         if (err) {
           throw new Error('ERROR al borrar la canción');
         }
-        expect(res).to.have.status(200);
+        expect(res).to.have.status(404);
         done();
       });
     });
@@ -43,12 +43,12 @@ describe('Petición DELETE', () => {
       if (err) {
         throw new Error('ERROR al borrar la playlist');
       }
-      expect(res).to.have.status(501);
+      expect(res).to.have.status(200);
       chai.request(url).get('/playlist?name=PlayList1').end((err, res) => {
         if (err) {
           throw new Error('ERROR al borrar la playlist');
         }
-        expect(res).to.have.status(404);
+        expect(res).to.have.status(200);
         done();
       });
     });
