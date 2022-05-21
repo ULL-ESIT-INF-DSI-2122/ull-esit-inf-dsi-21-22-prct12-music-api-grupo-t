@@ -1,5 +1,5 @@
 # Práctica 12 - API Node/Express de gestión de información musical
-
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ULL-ESIT-INF-DSI-2122_ull-esit-inf-dsi-21-22-prct12-music-api-grupo-t&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ULL-ESIT-INF-DSI-2122_ull-esit-inf-dsi-21-22-prct12-music-api-grupo-t)
 ### Desarrollo de Sistemas Informáticos - Universidad de La Laguna
 
 #### Miembros:
