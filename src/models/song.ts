@@ -28,14 +28,16 @@ const SongSchema = new Schema<SongDocumentInterface>({
     type: {min: Number, sec: Number},
     default: {min: 0, sec: 0},
   },
-  genres: {
-    type: String,
-    trim: true,
-    enum: [
-      "Rap", "Pop", "Trap", "Electro", "Classic", "Reggaeton",
-      "Rock", "Country", "Popular", "Blues", undefined,
-    ],
-  },
+  genres: [
+    {
+      type: String,
+      trim: true,
+      enum: [
+        "Rap", "Pop", "Trap", "Electro", "Classic", "Reggaeton",
+        "Rock", "Country", "Popular", "Blues", undefined,
+      ],
+    },
+  ],
   single: {
     type: Boolean,
     default: true,
