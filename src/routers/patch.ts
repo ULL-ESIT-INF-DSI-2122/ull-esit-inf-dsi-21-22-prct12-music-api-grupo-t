@@ -17,7 +17,7 @@ patchRouter.patch('/artist', (req, res) => {
       error: 'A name must be provided',
     });
   } else {
-    const allowedUpdates = ['name', 'genre', 'songs', 'monthlyListeners'];
+    const allowedUpdates = ['name', 'genres', 'songs', 'monthlyListeners'];
     const actualUpdates = Object.keys(req.body);
     const isValidUpdate =
       actualUpdates.every((update) => allowedUpdates.includes(update));
@@ -48,7 +48,7 @@ patchRouter.patch('/artist', (req, res) => {
  * Modifies all the artist information, found by its id
  */
 patchRouter.patch('/artist/:id', (req, res) => {
-  const allowedUpdates = ['name', 'genre', 'songs', 'monthlyListeners'];
+  const allowedUpdates = ['name', 'genres', 'songs', 'monthlyListeners'];
   const actualUpdates = Object.keys(req.body);
   const isValidUpdate =
       actualUpdates.every((update) => allowedUpdates.includes(update));
@@ -82,7 +82,7 @@ patchRouter.patch('/song', (req, res) => {
       error: 'A name must be provided',
     });
   } else {
-    const allowedUpdates = ['name', 'duration', 'genre', 'single', 'reproductions'];
+    const allowedUpdates = ['name', 'duration', 'genres', 'single', 'reproductions'];
     const actualUpdates = Object.keys(req.body);
     const isValidUpdate =
       actualUpdates.every((update) => allowedUpdates.includes(update));
@@ -112,7 +112,7 @@ patchRouter.patch('/song', (req, res) => {
  * Modifies all the song information, found by its id
  */
 patchRouter.patch('/song/:id', (req, res) => {
-  const allowedUpdates = ['name', 'duration', 'genre', 'single', 'reproductions'];
+  const allowedUpdates = ['name', 'duration', 'genres', 'single', 'reproductions'];
   const actualUpdates = Object.keys(req.body);
   const isValidUpdate =
       actualUpdates.every((update) => allowedUpdates.includes(update));
