@@ -9,7 +9,7 @@ export interface SongDocumentInterface extends Document {
   name: string,
   author: ArtistDocumentInterface,
   duration: {min: number, sec: number},
-  genre: Genre[],
+  genres: Genre[],
   single: boolean,
   reproductions: number
 }
@@ -28,7 +28,7 @@ const SongSchema = new Schema<SongDocumentInterface>({
     type: {min: Number, sec: Number},
     default: {min: 0, sec: 0},
   },
-  genre: {
+  genres: {
     type: String,
     trim: true,
     enum: [
